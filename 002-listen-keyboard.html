@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Render Square</title>
+    <style>
+        #canvas{
+            border: solid 5px #a9a9a9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="350" height="350"></canvas>
+
+    <script>
+        const canvas = document.querySelector('#canvas')
+        const context = canvas.getContext('2d')
+
+        const square = {
+            x : 50,
+            y : 50,
+            width : 20,
+            height : 20
+        }
+        context.fillStyle = 'red'
+        context.fillRect(square.x, square.y, square.width, square.height)
+
+        document.addEventListener('keydown', inputKeyboard)
+        
+        function inputKeyboard(event){
+            const keyPressed = event.key
+            console.log(keyPressed)
+            
+            if(keyPressed === 'ArrowUp'){
+                square.y--
+            }
+            if(keyPressed === 'ArrowRight'){
+                square.x++
+            }
+            if(keyPressed === 'ArrowDown'){
+                square.y++
+            }
+            if(keyPressed === 'ArrowLeft'){
+                square.x--
+            }
+        }
+       
+       renderScreen()
+        function renderScreen(){
+            context.clearRect(0,0,canvas.width, canvas.height)
+            context.fillStyle = 'red'
+            context.fillRect(square.x, square.y, square.width, square.height)
+            
+            requestAnimationFrame(renderScreen)
+        } 
+
+    </script>
+</body>
+</html>
