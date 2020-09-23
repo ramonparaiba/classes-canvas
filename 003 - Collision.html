@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactoring keyboard listen</title>
+    <style>
+        #canvas{
+            border: solid 5px #a9a9a9;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="10" height="10"></canvas>
+
+    <script>
+        const canvas = document.querySelector('#canvas')
+        const context = canvas.getContext('2d')
+
+        const square = {
+            x : 5,
+            y : 5,
+        }
+        context.fillStyle = 'red'
+        context.fillRect(square.x, square.y, 1, 1)
+
+        document.addEventListener('keydown', inputKeyboard)
+        
+        function inputKeyboard(event){
+            const keyPressed = event.key
+            console.log(keyPressed)
+            
+            if(keyPressed === 'ArrowUp'){
+                square.y--
+            }
+            if(keyPressed === 'ArrowRight'){
+                square.x++
+            }
+            if(keyPressed === 'ArrowDown'){
+                square.y++
+            }
+            if(keyPressed === 'ArrowLeft'){
+                square.x--
+            }
+        }
+       
+       renderScreen()
+        function renderScreen(){
+            context.clearRect(0,0,canvas.width, canvas.height)
+            context.fillStyle = 'red'
+            context.fillRect(square.x, square.y, 1, 1)
+            
+            requestAnimationFrame(renderScreen)
+        } 
+
+    </script>
+</body>
+</html>
