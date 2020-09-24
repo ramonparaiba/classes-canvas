@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementing - Collision keyboard listen</title>
+    <style>
+        #canvas{
+            border: solid 5px #a9a9a9;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="10" height="10"></canvas>
+
+    <script>
+        const canvas = document.querySelector('#canvas')
+        const context = canvas.getContext('2d')
+
+        
+        function createScene(){
+
+             const elements = {
+                player: {},
+                coin:{}     
+              }
+              function addPlayer(command){
+                  const playerId = command.playerId
+                  const playerX = command.playerX
+                  const playerY = command.playerY
+
+                  elements.player[playerId]={
+                      x:playerX,
+                      y:playerY                      
+                  }                  
+              }
+              function removePlayer(command){
+                  const playerId = command.playerId                  
+                  delete elements.player[playerId]                  
+              }
+
+             
+              
+              return{
+                  removePlayer,
+                  addPlayer,                  
+                  elements
+              }
+        }
+       
+        const scene = createScene()
+        const player = {playerId: 'jogador', playerX: 4, playerY: 3}
+
+        scene.addPlayer(player)
+
+            
+        document.addEventListener('keydown', inputKeyboard)
+        
+        function inputKeyboard(event){
+            const keyPressed = event.key
+            console.log(keyPressed)
+            const playerId = player.playerId                    
+          
+            if(keyPressed === 'd'){                
+                scene.removePlayer({playerId})
+            }
+            renderScreen()
+        }
+       
+        renderScreen()
+        function renderScreen(){
+            context.clearRect(0,0,canvas.width, canvas.height)
+            const element = scene.elements
+            for (const playerId in element.player){
+                const player = element.player[playerId]
+                context.fillStyle = 'red'
+                context.fillRect(player.x, player.y, 1, 1)
+            }
+            requestAnimationFrame(renderScreen)
+        } 
+        
+        
+        
+
+
+
+    </script>
+</body>
+</html>
