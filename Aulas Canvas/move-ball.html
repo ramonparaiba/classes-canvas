@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas com Canvas</title>
+    <style>
+        #canvas{
+            border: solid 5px #a9a9a9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="350" height="350"></canvas>
+
+    <script>
+        const canvas = document.querySelector('#canvas')
+        const context = canvas.getContext('2d')
+
+       
+        let x = 50
+        let y = 100
+        let velocityX = 8
+        let velocityY = 10
+        animaBall()
+        function animaBall(){
+            requestAnimationFrame(animaBall)
+            context.clearRect(0, 0, canvas.width, canvas.height)
+
+            context.beginPath()
+            context.arc(x, y, 20, 0, Math.PI*2)
+            context.fillStyle = 'red'
+            context.fill()
+            context.closePath()
+
+            x+=velocityX
+            y+=velocityY
+
+            if(x >= canvas.width || x <= 0)
+                velocityX = -velocityX
+            if(y >= canvas.height|| y <= 0)
+                velocityY = -velocityY
+         
+        }
+
+    </script>
+</body>
+</html>

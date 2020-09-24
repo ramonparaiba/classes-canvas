@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refactoring keyboard listen</title>
+    <title>Basic Move</title>
     <style>
         #canvas{
-            border: solid 5px #a9a9a9;
+            border: solid 3px #a9a9a9;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
             image-rendering: -moz-crisp-edges;
-            width: 400px;
-            height: 400px;
+            width: 350px;
+            height: 350px;
+
         }
     </style>
 </head>
@@ -22,40 +23,55 @@
         const canvas = document.querySelector('#canvas')
         const context = canvas.getContext('2d')
 
-        const square = {
-            x : 5,
-            y : 5,
+        const squares = {
+            player:{x:1, y:1},
+            coin:{x:4, y:4}
         }
-        context.fillStyle = 'red'
-        context.fillRect(square.x, square.y, 1, 1)
+        
+        const player = squares.player
+        const coin = squares.coin
 
         document.addEventListener('keydown', inputKeyboard)
         
         function inputKeyboard(event){
             const keyPressed = event.key
             console.log(keyPressed)
+            console.log(`vermelho: (${player.x}, ${player.y}) amarelo(${coin.x}, ${coin.y})`)
             
             if(keyPressed === 'ArrowUp'){
-                square.y--
+                player.y--
             }
             if(keyPressed === 'ArrowRight'){
-                square.x++
+                player.x++
             }
             if(keyPressed === 'ArrowDown'){
-                square.y++
+                player.y++
             }
             if(keyPressed === 'ArrowLeft'){
-                square.x--
+                player.x--
             }
         }
        
        renderScreen()
         function renderScreen(){
             context.clearRect(0,0,canvas.width, canvas.height)
-            context.fillStyle = 'red'
-            context.fillRect(square.x, square.y, 1, 1)
+            if(player){
+                context.fillStyle = 'red'
+                context.fillRect(player.x, player.y, 1, 1)
+            }
+            if(coin){
+                context.fillStyle = '#f39c12'
+                context.fillRect(coin.x, coin.y, 1, 1)
+            }
             
+            if(player.x === coin.x && player.y === coin.y){
+                delete coin
+            }
+
+
             requestAnimationFrame(renderScreen)
+
+
         } 
 
     </script>

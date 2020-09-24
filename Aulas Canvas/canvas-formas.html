@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas com Canvas</title>
+    <style>
+        #canvas{
+            border: solid 2px #a9a9a9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="350" height="350"></canvas>
+
+    <script>
+        const canvas = document.querySelector('#canvas')
+        const context = canvas.getContext('2d')
+
+        
+        context.fillStyle = 'red'
+        context.fillRect(20, 20, 50, 50)
+        context.fillRect(100, 60, 50, 50)
+        context.fillStyle = 'black'
+        context.fillRect(250, 300, 50, 50)
+
+        context.beginPath()
+        context.moveTo(10, 50)
+        context.lineTo(200, 50)
+        context.lineTo(200, 250)
+        context.lineTo(10, 250)
+        context.lineTo(10, 50)
+        context.strokeStyle = 'red'
+        context.stroke()
+
+        context.beginPath()
+        context.arc(200, 200, 110, 0, Math.PI*2)
+        context.strokeStyle = 'green'
+        context.stroke()
+
+        context.beginPath()
+        context.arc(205, 205, 50, 0, Math.PI*2)
+        context.fillStyle = 'blue'
+        context.fill()
+        context.closePath()
+
+
+
+    </script>
+</body>
+</html>
