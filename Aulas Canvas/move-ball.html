@@ -17,11 +17,16 @@
         const canvas = document.querySelector('#canvas')
         const context = canvas.getContext('2d')
 
-       
-        let x = 50
-        let y = 100
-        let velocityX = 8
-        let velocityY = 10
+        const bola = {
+            x: 50,
+            y: 50,
+            velocityX:8,
+            velocityY:10
+        }
+        let x = bola.x
+        let y = bola.y
+        let velocityX = bola.velocityX
+        let velocityY = bola.velocityY
         animaBall()
         function animaBall(){
             requestAnimationFrame(animaBall)
