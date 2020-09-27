@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break-out</title>
+    <style>
+        #game{
+            border: 20px solid #7f8fa6;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            width: 480px;
+            height: 300px;
+            background-color: #2f3640;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="game" width="80" height="50"></canvas>
+
+    <script>
+        const canvas = document.querySelector('#game')
+        const context = canvas.getContext('2d')
+
+        context.fillStyle = '#e84118'
+        context.fillRect(0, 0, 8, 4)
+    </script>
+</body>
+</html>
