@@ -23,8 +23,90 @@
         const canvas = document.querySelector('#game')
         const context = canvas.getContext('2d')
 
-        context.fillStyle = '#e84118'
-        context.fillRect(0, 0, 8, 4)
+        const bricks = {
+            dimensions:{width:8, height:4},
+            red:{
+                color: '#e84118',
+                x:0,
+                y:0
+            },
+            green:{
+                color: '#44bd32',
+                x:0,
+                y:4
+            },
+            yellow:{
+                color: '#fbc531',
+                x:0,
+                y:8
+            },
+            blue:{
+                color: '#00a8ff',
+                x:0,
+                y:12
+            }
+
+
+        }
+
+        createPaddle()
+        createBall()
+        renderBricks()
+
+        function createPaddle(){
+            context.fillStyle = "#8c7ae6"
+            context.fillRect(canvas.width/2, canvas.height-3, 10, 2)
+        }
+        function createBall(){
+            context.fillStyle = "#8c7ae6"
+            context.fillRect(canvas.width/2, canvas.height/2, 2, 2)
+        }
+        function renderBricks(){
+            const brickW = bricks.dimensions.width
+            const brickH = bricks.dimensions.height
+           if(bricks.red){
+               let x = bricks.red.x
+               let y = bricks.red.y
+               const color = bricks.red.color
+               while(x < canvas.width){
+                    context.fillStyle = color
+                    context.fillRect(x, y, brickW, brickH)
+                    x+=8  
+               }                            
+           }
+           if(bricks.green){
+               let x = bricks.green.x
+               let y = bricks.green.y
+               const color = bricks.green.color
+               while(x < canvas.width){
+                    context.fillStyle = color
+                    context.fillRect(x, y, brickW, brickH)
+                    x+=8 
+               }                            
+           }
+           if(bricks.yellow){
+               let x = bricks.yellow.x
+               let y = bricks.yellow.y
+               const color = bricks.yellow.color
+               while(x < canvas.width){
+                    context.fillStyle = color
+                    context.fillRect(x, y, brickW, brickH)
+                    x+=8 
+               }                            
+           }
+           if(bricks.blue){
+               let x = bricks.blue.x
+               let y = bricks.blue.y
+               const color = bricks.blue.color
+               while(x < canvas.width){
+                    context.fillStyle = color
+                    context.fillRect(x, y, brickW, brickH)
+                    x+=8 
+               }                            
+           }
+        }
+
+
     </script>
 </body>
 </html>
