@@ -28,8 +28,18 @@
         width: 6,
         x: canvas.width/2,
         y: canvas.height/2,
-        color:  '#f1c40f'
-    }      
+        color:  '#f1c40f',
+        falling: false, 
+        onFloor: false,
+        velocityX: 5
+    }    
+    const platform = {
+        color: '#c0392b',
+        x: 0,
+        y: canvas.height-8,
+        width: canvas.width,
+        height: 8
+    }  
     renderGame()
 
     document.addEventListener('keydown', inputKeyboard)
@@ -39,11 +49,31 @@
         console.log(keyPressed)
 
         if(keyPressed === 'ArrowRight')
-            player.x++
+            player.x+=player.velocityX
         if(keyPressed === 'ArrowLeft')
-            player.x--
-        if(player.x === canvas.width || player.x === -player.width)
-            console.log('Você está no limite, fera')
+            player.x-=player.velocityX
+        if(keyPressed === 'ArrowDown')
+            player.y++
+        if(keyPressed === 'ArrowUp')
+            player.y-=20
+        
+        
+    }
+    function inFloor(){        
+        player.falling = (player.onFloor) ? false : true
+        if(inFloor){
+            player.y = platform.y-player.height
+        }platform.y-player.height
+        console.log(player.onFloor)
+        if(player.y >= platform.y-player.height){
+             player.onFloor = true
+            console.log(player.onFloor)
+        }
+           
+        if(player.y >= platform.y-player.height){
+            onFloor = false
+        }
+        
     }
     
     function renderGame(){   
@@ -57,11 +87,20 @@
         context.fillRect(x, y, wid, hei)
         
         context.fillStyle = "#e74c3c"
-        context.fillRect(0, canvas.height - 8, canvas.width, 8)
+        context.fillRect(platform.x, platform.y, platform.width, platform.height)
 
 
         //caindo sempre
-        player.y++;
+        //if(player.falling)
+        inFloor()
+        if (player.falling)
+            player.y++;    
+
+
+
+        
+        if(player.x === canvas.width || player.x === -player.width)
+            console.log('Você está no limite, fera')
 
         if(player.x === canvas.width)
             player.x = 0
