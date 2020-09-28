@@ -23,13 +23,12 @@
 <script>
     const canvas = document.querySelector('#game')
     const context = canvas.getContext('2d')
-
     const player = {
         height: 6,
         width: 6,
         x: canvas.width/2,
         y: canvas.height/2,
-        color:  '#2ecc71'
+        color:  '#f1c40f'
     }      
     renderGame()
 
@@ -43,21 +42,37 @@
             player.x++
         if(keyPressed === 'ArrowLeft')
             player.x--
-        if(keyPressed === 'ArrowUp')
-            player.y--
-        if(keyPressed === 'ArrowDown')
-            player.y++
+        if(player.x === canvas.width || player.x === -player.width)
+            console.log('Você está no limite, fera')
     }
-    function renderGame(){        
+    
+    function renderGame(){   
+        requestAnimationFrame(renderGame)
+        
+        
         context.clearRect(0, 0, canvas.width, canvas.height)
 
         let x = player.x, y = player.y, wid = player.width, hei = player.height
         context.fillStyle = player.color
         context.fillRect(x, y, wid, hei)
-            
         
-        requestAnimationFrame(renderGame)
+        context.fillStyle = "#e74c3c"
+        context.fillRect(0, canvas.height - 8, canvas.width, 8)
+
+
+        //caindo sempre
+        player.y++;
+
+        if(player.x === canvas.width)
+            player.x = 0
+        if(player.x === -player.width)
+            player.x = canvas.width-player.width
+        if(player.y === canvas.height)
+            player.y = 0
+        // if(player.y === -player.width)
+        //     player.y = canvas.width-player.width      
     }
+    
 
 </script>
 </body>
