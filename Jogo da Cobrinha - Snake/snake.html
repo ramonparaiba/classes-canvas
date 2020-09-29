@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <style>
+        *{
+            text-align: center;
+            font-family: "Courier New", Courier, monospace;
+        }
+        #game{
+            border: 15px solid #34495e;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            width: 300px;
+            height: 300px;
+            background-color: #332c50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo da Cobrinha</h1>
+    <h3>Vem que tem</h3>
+    <canvas id="game" width="300" height="300"></canvas>
+    
+    <script>
+        const canvas = document.querySelector('#game')
+        const ctx = canvas.getContext('2d')
+
+
+        let snake = [  
+            {x: 150, y: 150},
+            {x: 140, y: 150}, 
+            {x: 130, y: 150},
+            {x: 120, y: 150},
+            {x: 110, y: 150}
+            ]
+
+        drawSnake()
+        function drawSnake(){
+            snake.forEach(drawSnakePart)
+        }
+        function drawSnakePart(snakePart){
+            ctx.fillStyle = '#94e344'
+            ctx.strokestyle = '#332c50'
+            ctx.fillRect(snakePart.x, snakePart.y, 10, 10)
+            ctx.strokeRect(snakePart.x, snakePart.y, 10, 10)
+        }
+        
+        
+
+    </script>
+</body>
+</html>
