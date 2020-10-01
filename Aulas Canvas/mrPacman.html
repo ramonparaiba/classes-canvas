@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break-out</title>
+    <style>
+        #mrpacman{
+            border: 10px solid #7f8fa6;
+            /* image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges; */            
+            background-color: #2f3640;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mrpacman" width="400" height="400"></canvas>
+    
+    <script type="module">
+        import drawGrids from './drawgrids.js'
+        import drawPacman from './drawPacman.js'
+        const canvas = document.querySelector('#mrpacman')
+        const context = canvas.getContext('2d')
+        const pacman = {
+            
+        }
+        
+        drawPacman(context, 200, 200, 60, 0, 2*Math.PI, )
+        drawGrids(canvas, context)
+
+        
+      
+
+
+    </script>
+</body>
+</html>
