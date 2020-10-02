@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceBattle</title>
+    <style>
+        #space{
+            border: 5px solid #aabbcc;
+            background-color: #555555;
+            }
+    </style>
+</head>
+<body>
+    <h2>Desenhando uma Nave espacial</h2>
+    <canvas id="space" width="400" height="400"></canvas>
+
+    <script type="module">
+    import drawGrid from './drawGrid.js'
+
+    const canvas = document.querySelector('#space')
+    const context = canvas.getContext('2d')
+
+
+    drawGrid(canvas, context)
+    drawShip(context, 200, 200, 150, {guide:true})
+    function drawShip(context, x, y, radius, options){
+        options = options || {}
+
+        context.save();
+        if(options.guide){
+            context.strokeStyle = 'white'
+            context.fillStyle = (0,0,0,0.25)
+            context.lineWidth = 0.5
+            context.beginPath()
+            context.arc(x, y, radius, 0, 2*Math.PI)
+            context.stroke()
+            context.fill()
+        }
+        context.lineWidth = options.lineWidth || 2
+        context.strokeStyle = options.strok || 'white'
+        context.fillStyle = options.fill || 'black'
+        let angle = (options.angle || 0.5 * Math.PI) / 2
+        context.beginPath()
+        context.moveTo(x+radius, y)
+        context.lineTo(
+            x + Math.cos(Math.PI - angle) * radius,
+            y + Math.sin(Math.PI - angle) * radius  
+        )
+        context.lineTo(
+            x + Math.cos(Math.PI + angle) * radius,
+            y + Math.sin(Math.PI + angle) * radius
+        )
+
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.restore();
+    }
+    
+    </script>
+</body>
+</html>
