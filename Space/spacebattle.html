@@ -24,8 +24,10 @@
 
 
     drawGrid(canvas, context)
-    drawShip(context, 200, 200, 150, {guide:true})
-    
+    drawShip(context, 200, 200, 100, {guide:true})
+    // COlocar umas naves na tela na TORA
+    drawShip(context, 75, 75, 50, {stroke:'gold', fill: 'purple'})
+    drawShip(context, 325, 325, 50, {angle: 0.8*Math.PI, guide:true})
     
     </script>
 </body>
