@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas com Canvas</title>
+    <style>
+        #canvas{
+            border: solid 2px #a9a9a9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="350" height="350"></canvas>
+    <button class="botao" onclick="createSquare()">Click Here</button>
+    <script>
+        const canvas = document.querySelector('#canvas')
+        const button = document.querySelector('.botao')
+        const context = canvas.getContext('2d')
+
+
+        function createSquare(){
+            let x = Math.random()*canvas.width
+            let y = Math.random()*canvas.height
+        
+            context.fillStyle = 'red'
+            context.fillRect(x, y, 50, 50)
+        }
+        
+
+    </script>
+</body>
+</html>
