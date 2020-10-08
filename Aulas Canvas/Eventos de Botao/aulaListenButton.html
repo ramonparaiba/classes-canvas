@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas com Canvas</title>
+    <style>
+        #canvas{
+            border: solid 2px #a9a9a9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="350" height="350"></canvas>
+    <button onclick="createSquare()">create square</button>
+    <button onclick="clearScreen()">reset</button>
+    <button onclick="renderMario()">Mario</button>
+    
+    
+    
+    
+    
+    <script>
+        const canvas = document.querySelector('#canvas')
+        const context = canvas.getContext('2d')
+        
+        function createSquare(){
+            let x = Math.random()*(canvas.width -50)
+            let y = Math.random()*(canvas.height -50)
+            context.fillStyle = 'red'
+            context.fillRect(x, y, 50, 50)
+            console.log(Math.random())           
+        }
+        function clearScreen(){
+             context.clearRect(0, 0, canvas.width, canvas.height)
+        }
+        function renderMario(){
+            let img = new Image()
+            let x = Math.random()*(canvas.width -50)
+            let y = Math.random()*(canvas.height -50)
+            let w = Math.random()*50
+            img.onload  = function(){
+                context.drawImage(img, x, y, w, w)
+            }
+            img.src = 'mario.png'
+        }
+
+    </script>
+</body>
+</html>
