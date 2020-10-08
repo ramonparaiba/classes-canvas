@@ -20,12 +20,18 @@
 
 
         function createSquare(){
-            let x = Math.random()*canvas.width
-            let y = Math.random()*canvas.height
+            let x = Math.random()*(canvas.width -50)
+            let y = Math.random()*(canvas.height -50)
         
             context.fillStyle = 'red'
             context.fillRect(x, y, 50, 50)
         }
+        let img = new Image()
+        img.onload  = function(){
+            context.drawImage(img, 20, 20, 40, 40)
+        }
+        img.src = 'mario.png'
+        
         
 
     </script>
